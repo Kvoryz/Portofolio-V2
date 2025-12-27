@@ -278,6 +278,71 @@ section {
   line-height: 1.1;
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
+  min-height: 3.85rem;
+}
+
+.typewriter-text {
+  display: inline;
+  border-right: none;
+}
+
+.typewriter-text .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: charFadeIn 0.3s ease forwards;
+}
+
+.typewriter-text .char.deleting {
+  animation: charBlurFadeOut 0.3s ease forwards;
+}
+
+@keyframes charFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes charBlurFadeOut {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.8);
+  }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  color: #1e293b;
+  font-weight: 400;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+.typewriter-cursor.hidden {
+  visibility: hidden;
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .home-description {

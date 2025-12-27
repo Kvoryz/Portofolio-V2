@@ -24,6 +24,60 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeOffcanvas();
   });
 
+  const typewriterElement = document.querySelector(".typewriter-text");
+  const cursorElement = document.querySelector(".typewriter-cursor");
+
+  if (typewriterElement) {
+    const roles = ["Frontend Developer", "Web Enthusiast", "Photography"];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function typeWriter() {
+      const currentRole = roles[roleIndex];
+
+      if (isDeleting) {
+        cursorElement?.classList.add("hidden");
+        const chars = typewriterElement.querySelectorAll(
+          ".char:not(.deleting)"
+        );
+        if (chars.length > 0) {
+          const lastChar = chars[chars.length - 1];
+          lastChar.classList.add("deleting");
+          setTimeout(() => lastChar.remove(), 300);
+        }
+        charIndex--;
+        typingSpeed = 60;
+      } else {
+        cursorElement?.classList.remove("hidden");
+        if (charIndex < currentRole.length) {
+          const char = currentRole[charIndex];
+          const span = document.createElement("span");
+          span.className = "char";
+          span.textContent = char === " " ? "\u00A0" : char;
+          typewriterElement.appendChild(span);
+          charIndex++;
+          typingSpeed = 80;
+        }
+      }
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        typingSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        typingSpeed = 500;
+      }
+
+      setTimeout(typeWriter, typingSpeed);
+    }
+
+    setTimeout(typeWriter, 1000);
+  }
+
   const sidebarLinks = document.querySelectorAll(".sidebar-link");
 
   function updateActiveLink() {
@@ -109,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(aboutSection);
   }
 
-  // Project Carousel
   const carouselCards = document.querySelectorAll(".carousel-card");
   const prevBtn = document.querySelector(".prev-btn");
   const nextBtn = document.querySelector(".next-btn");
