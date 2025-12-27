@@ -1,6 +1,22 @@
-/* ========================================
-   NAVBAR
-   ======================================== */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+section {
+  scroll-snap-align: start;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -46,9 +62,6 @@
   background: #334155;
 }
 
-/* ========================================
-   SIDEBAR
-   ======================================== */
 .sidebar {
   position: fixed;
   left: 0;
@@ -111,9 +124,6 @@
   transform: translateX(0);
 }
 
-/* ========================================
-   HOME SECTION
-   ======================================== */
 .home-section {
   min-height: 100vh;
   display: flex;
@@ -238,9 +248,6 @@
   filter: grayscale(0%);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
 @media (max-width: 1024px) {
   .home-container {
     flex-direction: column-reverse;
@@ -551,9 +558,6 @@
   }
 }
 
-/* ========================================
-   ABOUT ME SECTION
-   ======================================== */
 .about-section {
   min-height: 100vh;
   display: flex;

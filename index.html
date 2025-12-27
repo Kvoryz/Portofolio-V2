@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="bg-white text-slate-900 font-['Plus_Jakarta_Sans'] min-h-screen">
@@ -77,9 +78,13 @@
     <section id="home" class="home-section">
       <div class="home-container">
         <div class="home-content">
-          <span class="home-subtitle">R A F F I &nbsp; A N D H I K A</span>
-          <h1 class="home-title">Junior Software Developer</h1>
-          <p class="home-description">
+          <span class="home-subtitle" data-aos="fade-up" data-aos-delay="100"
+            >R A F F I &nbsp; A N D H I K A</span
+          >
+          <h1 class="home-title" data-aos="fade-up" data-aos-delay="200">
+            Junior Software Developer
+          </h1>
+          <p class="home-description" data-aos="fade-up" data-aos-delay="300">
             Hi! I'm Raffi, a Junior Software Developer–focused student who
             enjoys creating functional and visually appealing web applications.
             I am passionate about learning new technologies, improving
@@ -87,13 +92,17 @@
             efficient and maintainable web projects as part of my academic
             journey.
           </p>
-          <div class="home-buttons">
+          <div class="home-buttons" data-aos="fade-up" data-aos-delay="400">
             <a href="#" class="btn btn-primary">Download CV</a>
             <a href="#contact" class="btn btn-outline">Contact Me</a>
           </div>
         </div>
 
-        <div class="home-photo-wrapper">
+        <div
+          class="home-photo-wrapper"
+          data-aos="fade-left"
+          data-aos-delay="300"
+        >
           <div class="home-photo-container">
             <img
               src="assets/img/gweh.jpg"
@@ -107,13 +116,13 @@
 
     <section id="about-me" class="about-section">
       <div class="about-container">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
           <span class="section-subtitle">A B O U T &nbsp; M E</span>
           <h2 class="section-title">Get To Know Me</h2>
         </div>
 
         <div class="about-content-wrapper">
-          <div class="about-info">
+          <div class="about-info" data-aos="fade-right" data-aos-delay="100">
             <p class="about-text">
               A passionate software developer from Indonesia who loves creating
               beautiful and functional web experiences. I specialize in frontend
@@ -125,20 +134,27 @@
               enjoy exploring new design trends and contributing to open-source
               projects.
             </p>
+            <a
+              href="about.html"
+              class="btn btn-primary"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              >Learn More</a
+            >
           </div>
 
           <div class="about-stats">
-            <div class="stat-card">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
               <span class="stat-number" data-target="1">0</span>
               <span class="stat-suffix">+</span>
               <span class="stat-label">Years Experience</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
               <span class="stat-number" data-target="5">0</span>
               <span class="stat-suffix">+</span>
               <span class="stat-label">Projects Completed</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
               <span class="stat-number" data-target="2">0</span>
               <span class="stat-suffix">+</span>
               <span class="stat-label">Certificates</span>
@@ -146,20 +162,41 @@
           </div>
         </div>
 
-        <div class="tech-section">
+        <div class="tech-section" data-aos="fade-up" data-aos-delay="200">
           <span class="tech-title">My Tech Stack</span>
           <div class="tech-grid">
-            <span class="tech-badge">HTML</span>
-            <span class="tech-badge">CSS</span>
-            <span class="tech-badge">JavaScript</span>
-            <span class="tech-badge">React</span>
-            <span class="tech-badge">Tailwind</span>
-            <span class="tech-badge">Node.js</span>
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="100"
+              >HTML</span
+            >
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="150"
+              >CSS</span
+            >
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="200"
+              >JavaScript</span
+            >
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="250"
+              >React</span
+            >
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="300"
+              >Tailwind</span
+            >
+            <span class="tech-badge" data-aos="flip-up" data-aos-delay="350"
+              >Node.js</span
+            >
           </div>
         </div>
       </div>
     </section>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+        offset: 50,
+      });
+    </script>
   </body>
 </html>
