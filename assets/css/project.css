@@ -1,0 +1,338 @@
+html {
+  scroll-snap-type: none;
+}
+
+.project-page {
+  min-height: 100vh;
+  background: #f1f5f9;
+  padding: 6rem 2rem 4rem;
+}
+
+.project-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #64748b;
+  background: #e2e8f0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.back-icon:hover {
+  color: #1e293b;
+  background: #cbd5e1;
+}
+
+.back-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.project-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.page-subtitle {
+  display: block;
+  font-family: "Sora", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+}
+
+.page-title {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+}
+
+/* Highlight Section */
+.highlight-section {
+  margin-bottom: 4rem;
+}
+
+.highlight-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.highlight-image {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.highlight-image:hover img {
+  transform: scale(1.02);
+}
+
+.highlight-info {
+  padding: 1rem 0;
+}
+
+.highlight-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.highlight-info h1 {
+  font-family: "Sora", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.highlight-description {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.highlight-tech span {
+  background: #e2e8f0;
+  color: #475569;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.highlight-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  border: 2px solid #1e293b;
+  color: #1e293b;
+  font-family: "Sora", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-secondary:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+.btn-secondary:hover svg {
+  fill: #ffffff;
+}
+
+/* Other Projects Section */
+.other-projects-section {
+  padding-top: 2rem;
+}
+
+.section-heading {
+  font-family: "Sora", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2rem;
+}
+
+.other-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.other-project-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.other-project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.other-card-image {
+  height: 280px;
+  overflow: hidden;
+}
+
+.other-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.other-project-card:hover .other-card-image img {
+  transform: scale(1.05);
+}
+
+.other-card-content {
+  padding: 1.5rem;
+}
+
+.other-card-content h3 {
+  font-family: "Sora", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.other-card-content p {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.other-card-tech {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.other-card-tech span {
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.other-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-view-live {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #1e293b;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Sora", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-view-live:hover {
+  background: #0f172a;
+  transform: translateY(-2px);
+}
+
+.btn-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  text-decoration: none;
+  font-family: "Sora", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-github svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-github:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .highlight-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .highlight-info h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-page {
+    padding: 5rem 1.5rem 3rem;
+  }
+
+  .other-projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-actions {
+    flex-direction: column;
+  }
+}
