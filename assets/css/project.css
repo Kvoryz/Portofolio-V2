@@ -4,7 +4,7 @@ html {
 
 .project-page {
   min-height: 100vh;
-  background: #f1f5f9;
+  background: transparent;
   padding: 6rem 2rem 4rem;
 }
 

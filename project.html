@@ -15,6 +15,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/project.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
       if (localStorage.getItem("darkMode") === "enabled") {
         document.documentElement.classList.add("dark-mode-loading");
@@ -26,7 +27,7 @@
   </head>
   <body class="bg-white text-slate-900 font-['Plus_Jakarta_Sans'] min-h-screen">
     <script>if(localStorage.getItem("darkMode")==="enabled"){document.body.classList.add("dark-mode");}</script>
-    <canvas id="constellation-canvas"></canvas>
+    <canvas id="bg-canvas"></canvas>
     <nav class="navbar">
       <div class="navbar-left">
         <a href="index.html#projects" class="back-icon">
@@ -115,6 +116,7 @@
                 <span>JavaScript</span>
                 <span>Tailwind CSS</span>
                 <span>AOS</span>
+                <span>Three.js</span>
               </div>
               <div class="highlight-actions">
                 <a href="https://kvorys.vercel.app" class="btn btn-primary" target="_blank">View Live</a>

@@ -11,6 +11,17 @@ html::-webkit-scrollbar {
 
 body {
   overflow-y: scroll;
+  background: #f1f5f9;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
 }
 
 section {
@@ -239,22 +250,11 @@ section {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: #f1f5f9;
+  background: transparent;
   padding-left: 80px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
-}
-
-#constellation-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  display: none;
-  pointer-events: none;
 }
 
 .home-container {
@@ -758,7 +758,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9;
+  background: transparent;
   padding: 6rem 2rem;
   padding-left: 80px;
 }
@@ -932,7 +932,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9;
+  background: transparent;
   padding: 6rem 2rem;
   padding-left: 80px;
 }
@@ -1048,7 +1048,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9;
+  background: transparent;
   padding: 6rem 2rem;
   padding-left: 80px;
   scroll-snap-align: start;
@@ -1200,10 +1200,6 @@ section {
 
 body.dark-mode {
   background: #0f172a;
-}
-
-body.dark-mode #constellation-canvas {
-  display: block;
 }
 
 body.dark-mode .home-section {

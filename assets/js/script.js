@@ -1,86 +1,155 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("constellation-canvas");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
-    let particles = [];
-    let mouse = { x: null, y: null, radius: 150 };
+  const canvas = document.getElementById("bg-canvas");
+  const isDarkMode = () => document.body.classList.contains("dark-mode");
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+  let canvas2D;
+  function createCanvas2D() {
+    if (!canvas2D) {
+      canvas2D = document.createElement("canvas");
+      canvas2D.id = "constellation-canvas";
+      canvas2D.style.cssText =
+        "position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;display:none;";
+      document.body.insertBefore(canvas2D, document.body.firstChild);
     }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    return canvas2D;
+  }
 
-    canvas.addEventListener("mousemove", (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
+  if (canvas && typeof THREE !== "undefined") {
+    let scene,
+      camera,
+      renderer,
+      objects = [];
+    let animationId;
 
-    canvas.addEventListener("mouseleave", () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.3;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-
-        // Mouse interaction
-        if (mouse.x !== null && mouse.y !== null) {
-          const dx = mouse.x - this.x;
-          const dy = mouse.y - this.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < mouse.radius) {
-            const force = (mouse.radius - dist) / mouse.radius;
-            this.x -= dx * force * 0.02;
-            this.y -= dy * force * 0.02;
-          }
-        }
-      }
-
-      draw() {
-        ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function initParticles() {
-      particles = [];
-      const numberOfParticles = Math.floor(
-        (canvas.width * canvas.height) / 15000
+    function init3D() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
       );
-      for (let i = 0; i < numberOfParticles; i++) {
-        particles.push(new Particle());
+      camera.position.z = 30;
+
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        antialias: true,
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const geometries = [
+        new THREE.IcosahedronGeometry(1.5, 0),
+        new THREE.OctahedronGeometry(1.2, 0),
+        new THREE.TetrahedronGeometry(1.3, 0),
+        new THREE.TorusGeometry(1, 0.4, 8, 16),
+        new THREE.BoxGeometry(1.5, 1.5, 1.5),
+        new THREE.DodecahedronGeometry(1.2, 0),
+        new THREE.ConeGeometry(0.8, 1.5, 6),
+      ];
+
+      const colors = [0x1e293b, 0x334155, 0x475569, 0x64748b];
+
+      for (let i = 0; i < 50; i++) {
+        const geometry =
+          geometries[Math.floor(Math.random() * geometries.length)];
+        const material = new THREE.MeshBasicMaterial({
+          color: colors[Math.floor(Math.random() * colors.length)],
+          wireframe: true,
+          transparent: true,
+          opacity: 0.4 + Math.random() * 0.3,
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+
+        mesh.position.x = (Math.random() - 0.5) * 100;
+        mesh.position.y = (Math.random() - 0.5) * 80;
+        mesh.position.z = (Math.random() - 0.5) * 50;
+
+        mesh.rotation.x = Math.random() * Math.PI;
+        mesh.rotation.y = Math.random() * Math.PI;
+
+        mesh.userData = {
+          rotationSpeed: {
+            x: (Math.random() - 0.5) * 0.015,
+            y: (Math.random() - 0.5) * 0.015,
+          },
+          floatSpeed: Math.random() * 0.5 + 0.5,
+          floatOffset: Math.random() * Math.PI * 2,
+        };
+
+        objects.push(mesh);
+        scene.add(mesh);
       }
     }
 
-    function connectParticles() {
+    function animate3D() {
+      if (isDarkMode()) {
+        return;
+      }
+
+      animationId = requestAnimationFrame(animate3D);
+      const time = Date.now() * 0.001;
+
+      objects.forEach((obj) => {
+        obj.rotation.x += obj.userData.rotationSpeed.x;
+        obj.rotation.y += obj.userData.rotationSpeed.y;
+        obj.position.y +=
+          Math.sin(time * obj.userData.floatSpeed + obj.userData.floatOffset) *
+          0.01;
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    let ctx,
+      particles = [];
+
+    function initConstellation() {
+      const c2d = createCanvas2D();
+      ctx = c2d.getContext("2d");
+      c2d.width = window.innerWidth;
+      c2d.height = window.innerHeight;
+
+      particles = [];
+      const numberOfParticles = Math.floor((c2d.width * c2d.height) / 12000);
+      for (let i = 0; i < numberOfParticles; i++) {
+        particles.push({
+          x: Math.random() * c2d.width,
+          y: Math.random() * c2d.height,
+          size: Math.random() * 2 + 1,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          opacity: Math.random() * 0.5 + 0.3,
+        });
+      }
+    }
+
+    function animateConstellation() {
+      if (!isDarkMode()) return;
+
+      const c2d = canvas2D;
+      ctx.clearRect(0, 0, c2d.width, c2d.height);
+
+      particles.forEach((p) => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+        if (p.x < 0 || p.x > c2d.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > c2d.height) p.speedY *= -1;
+
+        ctx.fillStyle = `rgba(148, 163, 184, ${p.opacity})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-
           if (dist < 120) {
-            const opacity = 1 - dist / 120;
-            ctx.strokeStyle = `rgba(148, 163, 184, ${opacity * 0.3})`;
+            ctx.strokeStyle = `rgba(148, 163, 184, ${(1 - dist / 120) * 0.3})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -89,27 +158,40 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
+
+      requestAnimationFrame(animateConstellation);
     }
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const particle of particles) {
-        particle.update();
-        particle.draw();
+    function switchMode() {
+      if (isDarkMode()) {
+        canvas.style.display = "none";
+        createCanvas2D().style.display = "block";
+        initConstellation();
+        animateConstellation();
+      } else {
+        if (canvas2D) canvas2D.style.display = "none";
+        canvas.style.display = "block";
+        if (!scene) init3D();
+        animate3D();
       }
-      connectParticles();
-
-      requestAnimationFrame(animate);
     }
-
-    initParticles();
-    animate();
 
     window.addEventListener("resize", () => {
-      resizeCanvas();
-      initParticles();
+      if (renderer) {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+      if (isDarkMode()) initConstellation();
     });
+
+    const observer = new MutationObserver(() => switchMode());
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    switchMode();
   }
 
   const navbarBrand = document.querySelector(".navbar-brand");
