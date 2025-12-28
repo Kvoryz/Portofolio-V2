@@ -24,6 +24,10 @@ body {
   pointer-events: none;
 }
 
+body.dark-mode #bg-canvas {
+  display: none;
+}
+
 section {
   scroll-snap-align: start;
 }
@@ -250,7 +254,7 @@ section {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: transparent;
+  background: rgba(241, 245, 249, 0.7);
   padding-left: 80px;
   position: relative;
   overflow: hidden;
@@ -754,13 +758,15 @@ section {
 }
 
 .about-section {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(241, 245, 249, 0.7);
   padding: 6rem 2rem;
   padding-left: 80px;
+  scroll-snap-align: start;
+  overflow: hidden;
 }
 
 .about-container {
@@ -805,17 +811,56 @@ section {
   gap: 1.5rem;
 }
 
-.about-text {
-  font-size: 1rem;
+.about-teaser {
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #475569;
-  text-align: justify;
+  margin-bottom: 1.5rem;
+}
+
+.quick-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.quick-fact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.quick-fact-item:hover {
+  background: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.fact-icon {
+  width: 20px;
+  height: 20px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.fact-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
 }
 
 .about-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
 .stat-card {
@@ -932,9 +977,10 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(241, 245, 249, 0.7);
   padding: 6rem 2rem;
   padding-left: 80px;
+  scroll-snap-align: start;
 }
 
 .projects-container {
@@ -1048,7 +1094,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(241, 245, 249, 0.7);
   padding: 6rem 2rem;
   padding-left: 80px;
   scroll-snap-align: start;
@@ -1234,8 +1280,21 @@ body.dark-mode .section-title {
   color: #ffffff;
 }
 
-body.dark-mode .about-text {
+body.dark-mode .about-teaser {
   color: #cbd5e1;
+}
+
+body.dark-mode .quick-fact-item {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: #334155;
+}
+
+body.dark-mode .quick-fact-item:hover {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+body.dark-mode .fact-text {
+  color: #e2e8f0;
 }
 
 body.dark-mode .stat-card {

@@ -3,6 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const isDarkMode = () => document.body.classList.contains("dark-mode");
 
   let canvas2D;
+  let currentMode = null;
+  let animationId3D = null;
+  let animationIdConstellation = null;
+
   function createCanvas2D() {
     if (!canvas2D) {
       canvas2D = document.createElement("canvas");
@@ -19,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
       camera,
       renderer,
       objects = [];
-    let animationId;
 
     function init3D() {
       scene = new THREE.Scene();
@@ -84,11 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animate3D() {
-      if (isDarkMode()) {
-        return;
-      }
+      if (currentMode !== "light") return;
 
-      animationId = requestAnimationFrame(animate3D);
       const time = Date.now() * 0.001;
 
       objects.forEach((obj) => {
@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       renderer.render(scene, camera);
+      animationId3D = requestAnimationFrame(animate3D);
     }
 
     let ctx,
@@ -126,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animateConstellation() {
-      if (!isDarkMode()) return;
+      if (currentMode !== "dark") return;
 
       const c2d = canvas2D;
       ctx.clearRect(0, 0, c2d.width, c2d.height);
@@ -159,11 +160,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      requestAnimationFrame(animateConstellation);
+      animationIdConstellation = requestAnimationFrame(animateConstellation);
     }
 
     function switchMode() {
-      if (isDarkMode()) {
+      const newMode = isDarkMode() ? "dark" : "light";
+      if (currentMode === newMode) return;
+
+      if (animationId3D) {
+        cancelAnimationFrame(animationId3D);
+        animationId3D = null;
+      }
+      if (animationIdConstellation) {
+        cancelAnimationFrame(animationIdConstellation);
+        animationIdConstellation = null;
+      }
+
+      currentMode = newMode;
+
+      if (newMode === "dark") {
+        if (renderer) renderer.clear();
         canvas.style.display = "none";
         createCanvas2D().style.display = "block";
         initConstellation();
@@ -200,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("dark-mode");
   }
 
-  navbarBrand?.addEventListener("dblclick", (e) => {
+  navbarBrand?.addEventListener("click", (e) => {
     e.preventDefault();
     document.body.classList.toggle("dark-mode");
 
