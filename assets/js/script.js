@@ -228,11 +228,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (newMode === "dark") {
         if (renderer) renderer.clear();
-        createCanvas2D(); // ensure canvas2D exists
+        createCanvas2D();
         initConstellation();
         animateConstellation();
       } else {
-        // Clear constellation canvas
         if (canvas2D) {
           const ctx = canvas2D.getContext("2d");
           if (ctx) ctx.clearRect(0, 0, canvas2D.width, canvas2D.height);

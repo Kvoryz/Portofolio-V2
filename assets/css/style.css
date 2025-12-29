@@ -12,6 +12,7 @@ html::-webkit-scrollbar {
 body {
   overflow-y: scroll;
   background: #f1f5f9;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .time-toast {
@@ -923,7 +924,7 @@ section {
   padding: 2rem 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(203, 213, 225, 0.8);
 }
 
 .stat-card:hover {
@@ -1010,7 +1011,10 @@ section {
 
 @media (max-width: 640px) {
   .about-section {
+    height: auto;
+    min-height: 100vh;
     padding: 4rem 1.5rem;
+    overflow: visible;
   }
 
   .about-stats {
