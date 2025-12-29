@@ -1,4 +1,52 @@
+console.log(
+  "%cHey there, curious developer!",
+  "font-size: 20px; font-weight: bold; color: #22c55e;"
+);
+console.log(
+  "%cLooking for something? Feel free to explore!",
+  "font-size: 14px; color: #64748b;"
+);
+
 document.addEventListener("DOMContentLoaded", () => {
+  function showTimeGreeting() {
+    if (sessionStorage.getItem("greetingShown")) return;
+    sessionStorage.setItem("greetingShown", "true");
+
+    const hour = new Date().getHours();
+    let greeting;
+
+    if (hour >= 0 && hour < 5) {
+      greeting = "Still awake? Night owl detected";
+    } else if (hour >= 5 && hour < 12) {
+      greeting = "Good morning! Have a great day";
+    } else if (hour >= 12 && hour < 17) {
+      greeting = "Good afternoon! Keep it up";
+    } else if (hour >= 17 && hour < 21) {
+      greeting = "Good evening! Welcome back";
+    } else {
+      greeting = "Working late? Respect";
+    }
+
+    const toast = document.createElement("div");
+    toast.className = "time-toast";
+    toast.innerHTML = `<span class="toast-text">${greeting}</span>`;
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add("show"), 100);
+    setTimeout(() => {
+      toast.classList.remove("show");
+      setTimeout(() => toast.remove(), 500);
+    }, 4000);
+  }
+
+  if (
+    window.location.pathname.endsWith("index.html") ||
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/")
+  ) {
+    showTimeGreeting();
+  }
+
   const canvas = document.getElementById("bg-canvas");
   const isDarkMode = () => document.body.classList.contains("dark-mode");
 
@@ -210,13 +258,13 @@ document.addEventListener("DOMContentLoaded", () => {
     switchMode();
   }
 
-  const navbarBrand = document.querySelector(".navbar-brand");
+  const navbarBrandToggle = document.querySelector(".navbar-brand");
 
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
   }
 
-  navbarBrand?.addEventListener("click", (e) => {
+  navbarBrandToggle?.addEventListener("click", (e) => {
     e.preventDefault();
     document.body.classList.toggle("dark-mode");
 
