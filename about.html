@@ -611,6 +611,27 @@
         once: true,
         offset: 50,
       });
+
+      // Polaroid click to bring to front
+      const polaroids = document.querySelectorAll(".polaroid");
+      let maxZ = 3;
+
+      polaroids.forEach((polaroid) => {
+        polaroid.addEventListener("click", () => {
+          // Remove active from all
+          polaroids.forEach((p) => p.classList.remove("active"));
+
+          // Add active to clicked and bring to front
+          maxZ++;
+          polaroid.style.zIndex = maxZ;
+          polaroid.classList.add("active");
+
+          // Remove active after animation
+          setTimeout(() => {
+            polaroid.classList.remove("active");
+          }, 500);
+        });
+      });
     </script>
   </body>
 </html>

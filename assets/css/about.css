@@ -1,5 +1,20 @@
 html {
-  scroll-snap-type: none;
+  scroll-snap-type: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overflow: visible !important;
+  height: auto;
 }
 
 .about-page {
@@ -215,7 +230,7 @@ html {
 .who-am-i-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 4rem;
+  padding: 4rem 4rem 4rem;
 }
 
 .who-am-i-content {
@@ -240,9 +255,14 @@ html {
   border-radius: 12px;
   padding: 12px 12px 40px 12px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
   overflow: hidden;
+}
+
+.polaroid.active {
+  transform: translateX(-50%) rotate(0deg) scale(1.08) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
 }
 
 .polaroid img {
@@ -783,7 +803,8 @@ html {
   }
 
   .who-am-i-section {
-    padding: 4rem 2rem;
+    padding: 6rem 2rem 4rem;
+    margin-top: 2rem;
   }
 
   .who-am-i-content {
@@ -1173,7 +1194,6 @@ body.dark-mode .tech-tag:hover {
   border-color: #ffffff;
 }
 
-/* Journey Timeline - Dark Mode */
 body.dark-mode .journey-timeline-line {
   background: #475569;
 }
