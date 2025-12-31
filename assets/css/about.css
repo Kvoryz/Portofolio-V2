@@ -1022,14 +1022,14 @@ body {
   }
 
   .journey-timeline-line {
-    left: 10px;
-    width: 2px;
+    left: 15px;
+    width: 3px;
   }
 
   .journey-dot,
   .journey-item.left .journey-dot,
   .journey-item.right .journey-dot {
-    left: -34px !important;
+    left: -32px !important;
     width: 16px;
     height: 16px;
     border-width: 3px;
@@ -1039,7 +1039,7 @@ body {
   .journey-item.left .journey-connector,
   .journey-item.right .journey-connector {
     left: -24px !important;
-    width: 16px;
+    width: 24px;
   }
 
   .journey-header-badge {

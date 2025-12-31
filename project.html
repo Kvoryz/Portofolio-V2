@@ -64,14 +64,14 @@
           </svg>
           Home
         </a>
-        <a href="about.html" class="offcanvas-link">
+        <a href="index.html#about-me" class="offcanvas-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
             <circle cx="12" cy="7" r="4" />
           </svg>
           About Me
         </a>
-        <a href="project.html" class="offcanvas-link active">
+        <a href="index.html#projects" class="offcanvas-link active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
           </svg>
@@ -106,13 +106,29 @@
     </div>
 
     <main class="project-page">
-      <div class="project-container">
-        <section class="project-hero" data-aos="fade-up">
-          <span class="page-subtitle">P R O J E C T S</span>
-          <h1 class="page-title">My Work</h1>
-        </section>
+      <section class="project-hero-split" data-aos="fade-up">
+        <div class="hero-content">
+          <h1 class="hero-title">Projects</h1>
+          <p class="hero-subtitle">A Showcase of My Work</p>
+          <p class="hero-tagline">
+            A collection of my work and creative experiments
+          </p>
+          <a href="#featured" class="scroll-down-btn">
+            <span>Scroll Down</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M19 12l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
+        <div class="hero-image-wrapper" data-aos="fade-left" data-aos-delay="200">
+          <div class="hero-image-container">
+            <img src="assets/img/examp.jpeg" alt="Projects" />
+          </div>
+        </div>
+      </section>
 
-        <section class="highlight-section" data-aos="fade-up">
+      <div class="project-container">
+        <section id="featured" class="highlight-section" data-aos="fade-up">
           <div class="highlight-content">
             <div class="highlight-image" data-aos="fade-right">
               <img src="assets/img/portfoliov2.png" alt="Portfolio V2" />

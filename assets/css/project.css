@@ -1,16 +1,165 @@
 html {
-  scroll-snap-type: none;
+  scroll-snap-type: none !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: auto;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overflow: visible !important;
+  height: auto;
 }
 
 .project-page {
   min-height: 100vh;
   background: transparent;
-  padding: 6rem 2rem 4rem;
+  padding: 0;
+}
+
+.project-hero-split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12rem 4rem 6rem;
+  gap: 5rem;
+  min-height: 80vh;
+}
+
+.project-hero-split .hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.project-hero-split .hero-title {
+  font-family: "Sora", sans-serif;
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
+}
+
+.project-hero-split .hero-subtitle {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+.project-hero-split .hero-tagline {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #64748b;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+}
+
+.project-hero-split .scroll-down-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  background: transparent;
+  border: 2px solid #cbd5e1;
+  border-radius: 50px;
+  color: #475569;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.project-hero-split .scroll-down-btn:hover {
+  border-color: #1e293b;
+  color: #1e293b;
+  transform: translateY(3px);
+}
+
+.project-hero-split .scroll-down-btn svg {
+  width: 20px;
+  height: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(5px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
+.project-hero-split .hero-image-wrapper {
+  flex-shrink: 0;
+}
+
+.project-hero-split .hero-image-container {
+  width: 340px;
+  background: #ffffff;
+  padding: 15px 15px 50px 15px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  transform: rotate(-3deg);
+}
+
+.project-hero-split .hero-image-container::after {
+  content: "Projects";
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.project-hero-split .hero-image-container:hover {
+  transform: rotate(0deg) translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.project-hero-split .hero-image-container img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+  filter: grayscale(100%);
+  transition: filter 0.6s ease;
+}
+
+.project-hero-split .hero-image-container:hover img {
+  filter: grayscale(0%);
 }
 
 .project-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .navbar-left {
@@ -62,8 +211,9 @@ html {
   letter-spacing: -0.02em;
 }
 
-/* Highlight Section */
 .highlight-section {
+  margin-top: 0;
+  padding-top: 10rem;
   margin-bottom: 4rem;
 }
 
@@ -177,9 +327,9 @@ html {
   fill: #ffffff;
 }
 
-/* Other Projects Section */
 .other-projects-section {
   padding-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .section-heading {
@@ -309,8 +459,35 @@ html {
   border-color: #94a3b8;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
+  .project-hero-split {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 3rem;
+    min-height: auto;
+    padding: 10rem 2rem 4rem;
+  }
+
+  .project-hero-split .hero-content {
+    max-width: 100%;
+  }
+
+  .project-hero-split .hero-tagline {
+    max-width: 100%;
+    margin: 0 auto 2.5rem;
+  }
+
+  .project-hero-split .hero-image-container {
+    width: 280px;
+    height: auto;
+    padding: 12px 12px 40px 12px;
+    margin: 0 auto;
+  }
+
+  .project-hero-split .hero-image-container img {
+    height: 320px;
+  }
+
   .highlight-content {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -322,8 +499,39 @@ html {
 }
 
 @media (max-width: 768px) {
-  .project-page {
-    padding: 5rem 1.5rem 3rem;
+  .project-hero-split {
+    padding: 8rem 1.5rem 3rem;
+    gap: 2.5rem;
+  }
+
+  .project-hero-split .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .project-hero-split .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .project-hero-split .hero-image-container {
+    width: 240px;
+    padding: 10px 10px 35px 10px;
+  }
+
+  .project-hero-split .hero-image-container img {
+    height: 280px;
+  }
+
+  .project-hero-split .hero-image-container::after {
+    font-size: 0.75rem;
+    bottom: 10px;
+  }
+
+  .project-container {
+    padding: 0 1.5rem;
+  }
+
+  .highlight-section {
+    padding-top: 6rem;
   }
 
   .other-projects-grid {
@@ -337,6 +545,41 @@ html {
 
 body.dark-mode .project-page {
   background: transparent;
+}
+
+body.dark-mode .project-hero-split .hero-title {
+  color: #ffffff;
+}
+
+body.dark-mode .project-hero-split .hero-subtitle {
+  color: #94a3b8;
+}
+
+body.dark-mode .project-hero-split .hero-tagline {
+  color: #94a3b8;
+}
+
+body.dark-mode .project-hero-split .scroll-down-btn {
+  border-color: #475569;
+  color: #94a3b8;
+}
+
+body.dark-mode .project-hero-split .scroll-down-btn:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+body.dark-mode .project-hero-split .hero-image-container {
+  background: #1e293b;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .project-hero-split .hero-image-container::after {
+  color: #94a3b8;
+}
+
+body.dark-mode .project-hero-split .hero-image-container:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
 body.dark-mode .page-subtitle {

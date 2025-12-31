@@ -38,7 +38,7 @@
 
     <nav class="navbar">
       <div class="navbar-left">
-        <a href="index.html" class="back-icon">
+        <a href="index.html#about-me" class="back-icon">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -88,7 +88,7 @@
           </svg>
           Home
         </a>
-        <a href="about.html" class="offcanvas-link active">
+        <a href="index.html#about-me" class="offcanvas-link active">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -100,7 +100,7 @@
           </svg>
           About Me
         </a>
-        <a href="project.html" class="offcanvas-link">
+        <a href="index.html#projects" class="offcanvas-link">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -612,21 +612,17 @@
         offset: 50,
       });
 
-      // Polaroid click to bring to front
       const polaroids = document.querySelectorAll(".polaroid");
       let maxZ = 3;
 
       polaroids.forEach((polaroid) => {
         polaroid.addEventListener("click", () => {
-          // Remove active from all
           polaroids.forEach((p) => p.classList.remove("active"));
 
-          // Add active to clicked and bring to front
           maxZ++;
           polaroid.style.zIndex = maxZ;
           polaroid.classList.add("active");
 
-          // Remove active after animation
           setTimeout(() => {
             polaroid.classList.remove("active");
           }, 500);
